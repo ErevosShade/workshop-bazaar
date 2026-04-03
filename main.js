@@ -65,10 +65,21 @@ function logout() {
 function applyRoleBasedUI() {
   const role = localStorage.getItem('role');
   const adminPanel = document.getElementById('admin-dashboard');
+
+  const user = localStorage.getItem('session-user');
+  const btnLogin = document.getElementById('authbtn');
   if (role !== 'admin') {
     adminPanel.style.display = 'none';
   } else {
     adminPanel.style.display = 'block';
+  }
+
+  if(user){
+    btnLogin.textContent = 'Logout';
+    btnLogin.onclick = logout;
+  } else {
+    btnLogin.textContent = 'Login';
+    btnLogin.onclick = showLoginModal;
   }
 }
 
