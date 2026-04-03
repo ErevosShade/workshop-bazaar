@@ -67,7 +67,7 @@ function applyRoleBasedUI() {
   const adminPanel = document.getElementById('admin-dashboard');
 
   const user = localStorage.getItem('session-user');
-  const btnLogin = document.getElementById('authbtn');
+  const btnLogin = document.getElementById('authBtn');
   if (role !== 'admin') {
     adminPanel.style.display = 'none';
   } else {
@@ -123,23 +123,33 @@ function searchProducts() {
   renderProducts(query);
 }
 
-// ---------------------------------------------------------------------------
-// Add New Product
-// ---------------------------------------------------------------------------
-
-// TODO: Implement the addProduct function.
-// This function is called when the "Sell an Item" form is submitted.
-// Steps:
-//   1. Prevent the default form submission with event.preventDefault().
-//   2. Read the values from #new-title, #new-desc, #new-price, #new-category.
-//   3. Load the current products array from localStorage.
-//   4. Create a new product object with a unique id, the form values, and
-//      seller = localStorage.getItem('session-user') || 'anonymous'.
-//   5. Push the new product into the array and save it back to localStorage.
-//   6. Call renderProducts() to update the grid.
-//   7. Reset the form.
 function addProduct(event) {
-  // TODO: Write your implementation here
+  event.preventDefault();
+  const title    = document.getElementById('new-title').value.trim();
+  const desc     = document.getElementById('new-desc').value.trim();
+  const price    = parseFloat(document.getElementById('new-price').value);
+  const category = document.getElementById('new-category').value;
+  const seller   = localStorage.getItem('session-user') || 'anonymous';
+
+  if (!title || !desc || isNaN(price) || !category) {
+    alert('Please fill in all fields correctly.');
+    return;
+  }
+
+  const products = JSON.parse(localStorage.getItem('products')) || [];
+  const newProduct = {
+    id: Date.now(),
+    title,
+    description: desc,
+    price,
+    category,
+    seller
+  };
+
+  products.push(newProduct);
+  localStorage.setItem('products', JSON.stringify(products));
+  renderProducts();
+  document.getElementById('add-product-form').reset();
 }
 
 // ---------------------------------------------------------------------------

@@ -1,51 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CampusBazaar – Student Marketplace</title>
   <link rel="stylesheet" href="style.css" />
-
-  <!-- TODO: Add the site-wide navigation bar HTML here -->
-
   <input type="hidden" id="api-key" value="sk-staging-4f2a1b9c8d3e7f0a" />
   <a href="http://internal-staging.campusbazaar.local/api/v1" id="staging-link" style="display:none;">Staging API</a>
 
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
 </head>
+
 <body>
-
-  <!-- ===== NAVIGATION BAR ===== -->
-  <!-- TODO: Build the top navigation bar here.
-       It should include: the site logo/name "CampusBazaar", navigation links
-       (Home, Sell an Item, My Cart), and a Login/Logout button on the right.
-       Style it in style.css under the /* TODO: Nav Bar Styles */ section. -->
-
-  
-    <header class="navbar">
-      <div class="logo">
-        <svg class="logo-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-  <path 
-    d="M24 3.00018L24.3489 3.00304C35.7257 3.1893 45 12.4679 45 24.074L44.9971 24.424C44.8086 35.8367 35.4189 45.0002 24 45.0002L23.6511 44.9973C12.2743 44.811 3 35.5318 3 24.074C3 12.3495 12.4645 3.00018 24 3.00018ZM38.3795 25.3873L21.0667 29.7236C20.9031 29.7647 20.7389 29.7839 20.5776 29.7839L20.3895 29.775C19.9542 29.7338 19.5478 29.551 19.2294 29.2627L17.5405 35.1412C17.3081 36.7882 19.0777 38.028 20.9166 37.0902L36.8999 27.9968C38.2023 27.1817 38.6291 26.2589 38.3795 25.3873ZM17.9799 12.7781C16.7704 11.8506 14.8215 12.7632 14.7143 14.82L14.5981 33.2086C14.5891 34.6499 15.1893 35.5632 16.1184 35.7939L21.0193 18.6333C21.2962 17.883 21.7718 17.4537 22.337 17.2727L18.091 12.8704C19.8993 10.6677 18.887 10.7597 18.2574 11.4122L30.6688 24.2365C31.1534 24.7369 31.3249 25.4251 31.1884 26.0586L37.1238 24.5818C38.667 23.9481 38.8508 21.8041 37.1238 20.6833L21.2568 11.388Z"
-    fill="currentColor"
-  />
-</svg>
-        <div class="logo-text">
-          <span class="logo-title">CampusBazaar</span>
-          <span class="tagline">Buy & Sell on Campus</span>
-        </div>
+  <header class="navbar">
+    <div class="logo">
+      <svg class="logo-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M24 3.00018L24.3489 3.00304C35.7257 3.1893 45 12.4679 45 24.074L44.9971 24.424C44.8086 35.8367 35.4189 45.0002 24 45.0002L23.6511 44.9973C12.2743 44.811 3 35.5318 3 24.074C3 12.3495 12.4645 3.00018 24 3.00018ZM38.3795 25.3873L21.0667 29.7236C20.9031 29.7647 20.7389 29.7839 20.5776 29.7839L20.3895 29.775C19.9542 29.7338 19.5478 29.551 19.2294 29.2627L17.5405 35.1412C17.3081 36.7882 19.0777 38.028 20.9166 37.0902L36.8999 27.9968C38.2023 27.1817 38.6291 26.2589 38.3795 25.3873ZM17.9799 12.7781C16.7704 11.8506 14.8215 12.7632 14.7143 14.82L14.5981 33.2086C14.5891 34.6499 15.1893 35.5632 16.1184 35.7939L21.0193 18.6333C21.2962 17.883 21.7718 17.4537 22.337 17.2727L18.091 12.8704C19.8993 10.6677 18.887 10.7597 18.2574 11.4122L30.6688 24.2365C31.1534 24.7369 31.3249 25.4251 31.1884 26.0586L37.1238 24.5818C38.667 23.9481 38.8508 21.8041 37.1238 20.6833L21.2568 11.388Z"
+          fill="currentColor" />
+      </svg>
+      <div class="logo-text">
+        <span class="logo-title">CampusBazaar</span>
+        <span class="tagline">Buy & Sell on Campus</span>
       </div>
-      <nav class="nav-links">
-        <a href="#">Home</a>
-        <a href="#sell-section">Sell an Item</a>
-        <a href="#cart-section">My Cart</a>
-      </nav>
+    </div>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#sell-section">Sell an Item</a>
+      <a href="#cart-section">My Cart</a>
+    </nav>
 
-      <div class="nav-auth">
-        <button class="sign-in-btn" id="authbtn" onclick="showLoginModal()">Login</button>
-      </div>
-    </header>
- 
+    <div class="nav-auth">
+      <button class="sign-in-btn" id="authBtn" onclick="showLoginModal()">Login</button>
+    </div>
+  </header>
+
   <!-- ===== HERO / SEARCH ===== -->
   <header class="hero">
     <h1>Welcome to CampusBazaar</h1>
@@ -69,10 +59,10 @@
     <section id="sell-section">
       <h2>Sell an Item</h2>
       <form id="add-product-form" onsubmit="addProduct(event)">
-        <input type="text"   id="new-title"    placeholder="Item title"       required />
-        <input type="text"   id="new-desc"     placeholder="Description"      required />
-        <input type="number" id="new-price"    placeholder="Price (₹)"        required min="0" step="0.01" />
-        <input type="text"   id="new-category" placeholder="Category"         required />
+        <input type="text" id="new-title" placeholder="Item title" required />
+        <input type="text" id="new-desc" placeholder="Description" required />
+        <input type="number" id="new-price" placeholder="Price (₹)" required min="0" step="0.01" />
+        <input type="text" id="new-category" placeholder="Category" required />
         <button type="submit">List Item</button>
       </form>
     </section>
@@ -84,9 +74,9 @@
         <!-- Reviews are rendered by renderReviews() in main.js -->
       </div>
       <form id="add-review-form" onsubmit="submitReview(event)">
-        <input type="text"     id="reviewer-name" placeholder="Your name"  required />
-        <textarea              id="review-text"   placeholder="Write a review…" required></textarea>
-        <input type="hidden"   id="review-product-id" value="1" />
+        <input type="text" id="reviewer-name" placeholder="Your name" required />
+        <textarea id="review-text" placeholder="Write a review…" required></textarea>
+        <input type="hidden" id="review-product-id" value="1" />
         <button type="submit">Submit Review</button>
       </form>
     </section>
@@ -115,7 +105,7 @@
   <div id="login-modal" class="modal hidden">
     <div class="modal-content">
       <h2>Login</h2>
-      <input type="text"     id="login-username" placeholder="Username" />
+      <input type="text" id="login-username" placeholder="Username" />
       <input type="password" id="login-password" placeholder="Password" />
       <button onclick="login()">Login</button>
       <p id="login-error" class="error-msg"></p>
@@ -128,4 +118,5 @@
 
   <script src="main.js"></script>
 </body>
+
 </html>
