@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampusBazaar – Student Marketplace</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- TODO: Add the site-wide navigation bar HTML here -->
+
+  <input type="hidden" id="api-key" value="sk-staging-4f2a1b9c8d3e7f0a" />
+  <a href="http://internal-staging.campusbazaar.local/api/v1" id="staging-link" style="display:none;">Staging API</a>
+
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION BAR ===== -->
+  <!-- TODO: Build the top navigation bar here.
+       It should include: the site logo/name "CampusBazaar", navigation links
+       (Home, Sell an Item, My Cart), and a Login/Logout button on the right.
+       Style it in style.css under the /* TODO: Nav Bar Styles */ section. -->
+
+
+  <!-- ===== HERO / SEARCH ===== -->
+  <header class="hero">
+    <h1>Welcome to CampusBazaar</h1>
+    <p>Buy and sell anything on campus – textbooks, gadgets, and more.</p>
+    <input type="text" id="search-input" placeholder="Search products…" />
+    <button onclick="searchProducts()">Search</button>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main>
+
+    <!-- PRODUCT LISTING -->
+    <section id="product-listing">
+      <h2>Available Items</h2>
+      <div id="product-grid">
+        <!-- Product cards are injected here by main.js -->
+      </div>
+    </section>
+
+    <!-- ADD NEW PRODUCT FORM -->
+    <section id="sell-section">
+      <h2>Sell an Item</h2>
+      <form id="add-product-form" onsubmit="addProduct(event)">
+        <input type="text"   id="new-title"    placeholder="Item title"       required />
+        <input type="text"   id="new-desc"     placeholder="Description"      required />
+        <input type="number" id="new-price"    placeholder="Price (₹)"        required min="0" step="0.01" />
+        <input type="text"   id="new-category" placeholder="Category"         required />
+        <button type="submit">List Item</button>
+      </form>
+    </section>
+
+    <!-- PRODUCT DETAIL / REVIEWS -->
+    <section id="reviews-section">
+      <h2>Reviews</h2>
+      <div id="reviews-container">
+        <!-- Reviews are rendered by renderReviews() in main.js -->
+      </div>
+      <form id="add-review-form" onsubmit="submitReview(event)">
+        <input type="text"     id="reviewer-name" placeholder="Your name"  required />
+        <textarea              id="review-text"   placeholder="Write a review…" required></textarea>
+        <input type="hidden"   id="review-product-id" value="1" />
+        <button type="submit">Submit Review</button>
+      </form>
+    </section>
+
+    <!-- SHOPPING CART -->
+    <section id="cart-section">
+      <h2>My Cart</h2>
+      <div id="cart-items">
+        <!-- Cart items are injected here by main.js -->
+      </div>
+      <p>Total: ₹<span id="cart-total">0</span></p>
+      <button onclick="checkout()">Checkout</button>
+    </section>
+
+    <!-- ADMIN DASHBOARD -->
+    <section id="admin-dashboard" style="display:none;">
+      <h2>Admin Dashboard</h2>
+      <p>Welcome, Admin! Here you can manage all listings and users.</p>
+      <button onclick="deleteAllListings()">Delete All Listings</button>
+      <div id="admin-user-list"></div>
+    </section>
+
+  </main>
+
+  <!-- ===== LOGIN MODAL ===== -->
+  <div id="login-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Login</h2>
+      <input type="text"     id="login-username" placeholder="Username" />
+      <input type="password" id="login-password" placeholder="Password" />
+      <button onclick="login()">Login</button>
+      <p id="login-error" class="error-msg"></p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 CampusBazaar. All rights reserved.</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

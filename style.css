@@ -1,0 +1,204 @@
+/* =====================================================
+   CampusBazaar – Main Stylesheet
+   ===================================================== */
+
+/* ----- Reset & Base ----- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f6f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  background: #4a90e2;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #357abd;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  margin-bottom: 0.6rem;
+}
+
+textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+/* ----- TODO: Nav Bar Styles -----
+   Style the top navigation bar you build in index.html.
+   Suggested properties: background colour, flexbox layout,
+   logo font size, link spacing, and a sticky position. */
+
+
+/* ----- Hero / Search ----- */
+.hero {
+  background: linear-gradient(135deg, #4a90e2, #9b59b6);
+  color: #fff;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.hero h1 {
+  font-size: 2.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  margin-bottom: 1.2rem;
+  opacity: 0.9;
+}
+
+.hero input[type="text"] {
+  width: min(480px, 90%);
+  margin-bottom: 0.8rem;
+  border: none;
+  border-radius: 4px;
+}
+
+/* ----- Main Layout ----- */
+main {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+section {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+section h2 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  border-bottom: 2px solid #4a90e2;
+  padding-bottom: 0.4rem;
+}
+
+/* ----- Product Grid ----- */
+#product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.2rem;
+}
+
+/* TODO: Product Card Styles
+   Each product card is rendered by main.js and has the class `.product-card`.
+   Style it here: add a border, border-radius, padding, image placeholder,
+   a title style, a price style, and an "Add to Cart" button style.
+   Make it look polished – this is the most visible part of the marketplace! */
+
+
+/* ----- Reviews ----- */
+.review-item {
+  border-left: 3px solid #4a90e2;
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.8rem;
+  background: #f9f9f9;
+  border-radius: 0 4px 4px 0;
+}
+
+.review-item strong {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+/* ----- Cart ----- */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+/* ----- Admin Dashboard ----- */
+#admin-dashboard {
+  border: 2px solid #e74c3c;
+}
+
+#admin-dashboard h2 {
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
+/* ----- Login Modal ----- */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  width: min(380px, 90%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.modal-content h2 {
+  margin-bottom: 0.4rem;
+}
+
+.error-msg {
+  color: #e74c3c;
+  font-size: 0.9rem;
+}
+
+/* ----- Footer ----- */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.85rem;
+  color: #777;
+  margin-top: 2rem;
+}
