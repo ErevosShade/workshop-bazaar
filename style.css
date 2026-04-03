@@ -181,17 +181,89 @@ section h2 {
 
 /* ----- Product Grid ----- */
 #product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  display: flex;
   gap: 1.2rem;
+  overflow-x: auto; 
+  overflow-y: hidden ;      
+  scroll-behavior: smooth;
+  padding-bottom: 0.5rem;
+  -ms-overflow-style: none ; /* for edge */
 }
 
-/* TODO: Product Card Styles
-   Each product card is rendered by main.js and has the class `.product-card`.
-   Style it here: add a border, border-radius, padding, image placeholder,
-   a title style, a price style, and an "Add to Cart" button style.
-   Make it look polished – this is the most visible part of the marketplace! */
+/* for chrome browser */
+#product-grid::-webkit-scrollbar { 
+  display: none;
+}
 
+.product-card {
+  min-width: 250px;
+  max-width: 250px;
+  flex-shrink: 0;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  border: 1px solid rgba(74, 144, 226, 0.15);
+
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  transition: all 0.25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 14px 30px rgba(74, 144, 226, 0.15);
+}
+
+.product-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+}
+
+.product-desc {
+  font-size: 0.9rem;
+  color: #555;
+  overflow:hidden
+}
+
+.product-price {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #4a90e2;
+  background: linear-gradient(135deg, #4a90e2, #9b59b6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: auto;
+}
+
+.product-category {
+  font-size: 0.85rem;
+  color: #4a90e2;
+  background: rgba(74, 144, 226, 0.1);
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.product-card button{
+  padding: 0.5rem;
+  border-radius: 6px;
+  background: #4a90e2;
+  color: #fff;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+.product-card button:hover {
+  background: #357abd;
+}
 
 /* ----- Reviews ----- */
 .review-item {
