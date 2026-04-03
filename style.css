@@ -9,6 +9,10 @@
   padding: 0;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #f4f6f9;
@@ -57,6 +61,72 @@ textarea {
    Style the top navigation bar you build in index.html.
    Suggested properties: background colour, flexbox layout,
    logo font size, link spacing, and a sticky position. */
+
+.navbar {
+  background: #fff;
+  color: #0476f8;
+  width:100%;
+  position: sticky;
+  overflow: visible;
+  top: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 0.8rem 5%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: #4a90e2
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+    justify-content: center;
+}
+
+.logo-title {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2563eb;
+    line-height: 1;
+}
+
+.tagline {
+    font-size: 13px;
+    font-weight: 500;
+    color: #64748b;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+.logo-icon{
+  width: 32px;
+  height: 32px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 3rem;
+}
+
+.nav-links a{
+  font-size: 0.95rem;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: #4a90e2;
+}
 
 
 /* ----- Hero / Search ----- */
