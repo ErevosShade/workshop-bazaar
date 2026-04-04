@@ -196,7 +196,7 @@ function renderReviews() {
   reviews.forEach(review => {  
   const el = document.createElement('div');  
   el.className = 'review-item';  
-  
+
   const strong = document.createElement('strong');  
   strong.textContent = review.reviewer;  
   
@@ -289,7 +289,14 @@ function checkout() {
 // ---------------------------------------------------------------------------
 
 function deleteAllListings() {
-  if (confirm('Are you sure you want to delete ALL listings?')) {
+  const user = localStorage.getItem('session-user');
+
+  if (user !== 'admin') {
+    alert("Unauthorized");
+    return;
+  }
+
+  if (confirm('Are you sure?')) {
     localStorage.setItem('products', JSON.stringify([]));
     renderProducts();
   }
