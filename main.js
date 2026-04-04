@@ -103,17 +103,39 @@ function renderProducts(filter = '') {
   filtered.forEach(product => {
     const card = document.createElement('div');
     card.className = 'product-card';
-    card.innerHTML = `
-      <h3>${product.title}</h3>
-      <p class="product-desc">${product.description}</p>
-      <p class="product-price">₹${product.price}</p>
-      <p class="product-category">${product.category}</p>
-      <button
-        data-id="${product.id}"
-        data-title="${product.title}"
-        data-price="${product.price}"
-        onclick="addToCart(this)">Add to Cart</button>
-    `;
+
+    // Title
+    const title = document.createElement('h3');
+    title.textContent = product.title;
+
+    // Description
+    const desc = document.createElement('p');
+    desc.className = 'product-desc';
+    desc.textContent = product.description;
+
+    // Price
+    const price = document.createElement('p');
+    price.className = 'product-price';
+    price.textContent = `₹${product.price}`;
+
+    // Category
+    const category = document.createElement('p');
+    category.className = 'product-category';
+    category.textContent = product.category;
+
+    // Button
+    const btn = document.createElement('button');
+    btn.textContent = 'Add to Cart';
+
+    // SAFE dataset assignment
+    btn.dataset.id = product.id;
+    btn.dataset.title = product.title;
+    btn.dataset.price = product.price;
+
+    btn.addEventListener('click', () => addToCart(btn));
+
+    // Append everything
+    card.append(title, desc, price, category, btn);
     grid.appendChild(card);
   });
 }
@@ -171,12 +193,17 @@ function renderReviews() {
     container.appendChild(preview);
   }
 
-  reviews.forEach(review => {
-    const el = document.createElement('div');
-    el.className = 'review-item';
-    el.innerHTML = `<strong>${review.reviewer}</strong>${review.text}`;
-    container.appendChild(el);
-  });
+  reviews.forEach(review => {  
+  const el = document.createElement('div');  
+  el.className = 'review-item';  
+  
+  const strong = document.createElement('strong');  
+  strong.textContent = review.reviewer;  
+  
+  const text = document.createTextNode(' ' + review.text);  
+  el.append(strong, text);  
+  container.appendChild(el);  
+});
 }
 
 function submitReview(event) {
