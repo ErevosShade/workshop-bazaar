@@ -34,14 +34,14 @@ function initData() {
 // ---------------------------------------------------------------------------
 
 const USERS = [
-  { username: 'admin',   password: 'admin123',  role: 'admin'   },
-  { username: 'student', password: 'pass1234',  role: 'student' }
+  { username: 'admin', password: 'admin123', role: 'admin' },
+  { username: 'student', password: 'pass1234', role: 'student' }
 ];
 
 function login() {
   const username = document.getElementById('login-username').value.trim();
   const password = document.getElementById('login-password').value;
-  const errorEl  = document.getElementById('login-error');
+  const errorEl = document.getElementById('login-error');
 
   const match = USERS.find(u => u.username === username && u.password === password);
 
@@ -74,7 +74,7 @@ function applyRoleBasedUI() {
     adminPanel.style.display = 'block';
   }
 
-  if(user){
+  if (user) {
     btnLogin.textContent = 'Logout';
     btnLogin.onclick = logout;
   } else {
@@ -147,11 +147,11 @@ function searchProducts() {
 
 function addProduct(event) {
   event.preventDefault();
-  const title    = document.getElementById('new-title').value.trim();
-  const desc     = document.getElementById('new-desc').value.trim();
-  const price    = parseFloat(document.getElementById('new-price').value);
+  const title = document.getElementById('new-title').value.trim();
+  const desc = document.getElementById('new-desc').value.trim();
+  const price = parseFloat(document.getElementById('new-price').value);
   const category = document.getElementById('new-category').value;
-  const seller   = localStorage.getItem('session-user') || 'anonymous';
+  const seller = localStorage.getItem('session-user') || 'anonymous';
 
   if (!title || !desc || isNaN(price) || !category) {
     alert('Please fill in all fields correctly.');
@@ -180,7 +180,7 @@ function addProduct(event) {
 
 function renderReviews() {
   const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
-  const params  = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.location.search);
   const urlReview = params.get('review');
 
   const container = document.getElementById('reviews-container');
@@ -189,28 +189,31 @@ function renderReviews() {
   if (urlReview) {
     const preview = document.createElement('div');
     preview.className = 'review-item';
-    preview.innerHTML = `<strong>Preview:</strong>${urlReview}`;
+    const strong = document.createElement('strong');
+    strong.textContent = 'Preview: ';
+    const text = document.createTextNode(urlReview);
+    preview.append(strong, text);
     container.appendChild(preview);
   }
 
-  reviews.forEach(review => {  
-  const el = document.createElement('div');  
-  el.className = 'review-item';  
+  reviews.forEach(review => {
+    const el = document.createElement('div');
+    el.className = 'review-item';
 
-  const strong = document.createElement('strong');  
-  strong.textContent = review.reviewer;  
-  
-  const text = document.createTextNode(' ' + review.text);  
-  el.append(strong, text);  
-  container.appendChild(el);  
-});
+    const strong = document.createElement('strong');
+    strong.textContent = review.reviewer;
+
+    const text = document.createTextNode(' ' + review.text);
+    el.append(strong, text);
+    container.appendChild(el);
+  });
 }
 
 function submitReview(event) {
   event.preventDefault();
-  const reviews   = JSON.parse(localStorage.getItem('reviews')) || [];
-  const reviewer  = document.getElementById('reviewer-name').value;
-  const text      = document.getElementById('review-text').value;
+  const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+  const reviewer = document.getElementById('reviewer-name').value;
+  const text = document.getElementById('review-text').value;
   const productId = parseInt(document.getElementById('review-product-id').value, 10);
 
   reviews.push({
@@ -231,10 +234,10 @@ function submitReview(event) {
 // ---------------------------------------------------------------------------
 
 function addToCart(btn) {
-  const cart  = JSON.parse(localStorage.getItem('cart')) || [];
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
   const price = parseFloat(btn.getAttribute('data-price'));
   const title = btn.getAttribute('data-title');
-  const id    = parseInt(btn.getAttribute('data-id'), 10);
+  const id = parseInt(btn.getAttribute('data-id'), 10);
 
   cart.push({ id, title, price });
   localStorage.setItem('cart', JSON.stringify(cart));
@@ -242,9 +245,9 @@ function addToCart(btn) {
 }
 
 function renderCart() {
-  const cart      = JSON.parse(localStorage.getItem('cart')) || [];
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
   const container = document.getElementById('cart-items');
-  const totalEl   = document.getElementById('cart-total');
+  const totalEl = document.getElementById('cart-total');
   container.innerHTML = '';
 
   let total = 0;
